@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+# character magnifier
+
+import flet as ft
+
+
+def main(page: ft.Page):
+    page.title = "character magnifier"
+    t = ft.Tabs(
+        selected_index=0,
+        animation_duration=300,
+        tabs=[
+            ft.Tab(
+                text="読",
+                content=ft.Container(
+                    content=ft.Text("読", size=288), alignment=ft.alignment.center
+                ),
+            ),
+            ft.Tab(
+                text="書",
+                content=ft.Container(
+                    content=ft.Text("書", size=288), alignment=ft.alignment.center
+                ),
+            ),
+            ft.Tab(
+                text="鏡",
+                content=ft.Container(
+                    content=ft.Text("鏡", size=288), alignment=ft.alignment.center
+                ),
+            ),
+        ],
+        expand=1,
+    )
+    page.add(t)
+
+ft.app(main)
