@@ -6,6 +6,7 @@ import flet as ft
 
 def main(page: ft.Page):
     page.title = "character magnifier"
+    tf: ft.TextField = ft.TextField(label="target text")
     input: str = "読書鏡"
     tabs: list[ft.Tab] = []
     for s in input:
@@ -23,6 +24,6 @@ def main(page: ft.Page):
         tabs=tabs,
         expand=1,
     )
-    page.add(t)
+    page.add(tf, t)
 
 ft.app(main)
