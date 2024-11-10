@@ -3,6 +3,9 @@
 
 import flet as ft
 
+VMARGIN = 200
+CMARGIN = 0.9
+
 
 class CharTabs(ft.Tabs):
     def __init__(self):
@@ -11,14 +14,15 @@ class CharTabs(ft.Tabs):
         self.tabs = []
         self.expand = 1
 
-    def set_text(self, text: str):
+    def set_text(self, text: str, width: float, height: float) -> None:
+        size: int = self.__text_size(width, height)
         tabs: list[ft.Tab] = []
         for s in text if text is not None and len(text) else "":
             tabs.append(
                 ft.Tab(
                     text=s,
                     content=ft.Container(
-                        content=ft.Text(s, size=288), alignment=ft.alignment.center
+                        content=ft.Text(s, size=size), alignment=ft.alignment.center
                     ),
                 )
             )
@@ -26,12 +30,22 @@ class CharTabs(ft.Tabs):
         self.selected_index = 0
         self.update()
 
+    def set_text_size(self, width: float, height: float) -> None:
+        size: int = self.__text_size(width, height)
+        for t in self.tabs:
+            t.content.content.size = size
+        self.update()
+
+    def __text_size(self, width: float, height: float) -> int:
+        return int(min(width, height - VMARGIN) * CMARGIN)
+
 
 def main(page: ft.Page):
     page.title = "character magnifier"
     tf: ft.TextField = ft.TextField(label="target text")
     ct: CharTabs = CharTabs()
-    tf.on_submit = lambda e: ct.set_text(tf.value)
+    tf.on_submit = lambda e: ct.set_text(tf.value, page.width, page.height)
+    page.on_resized = lambda e: ct.set_text_size(e.width, e.height)
     page.add(tf, ct)
 
 
