@@ -21,10 +21,10 @@ Click on a tab to enlarge the selected character.
 
 ## EXAMPLES
 
-森羅万象
+森羅万象  
 <img alt="羅" width="240" src="images/ra.png">
 
-蜻蛉
+蜻蛉  
 <img alt="蜻" width="240" src="images/kage.png"><img alt="蛉" width="240" src="images/rou.png">
 
 ## SEE ALSO
